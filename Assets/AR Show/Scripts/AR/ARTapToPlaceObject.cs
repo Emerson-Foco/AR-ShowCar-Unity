@@ -5,6 +5,9 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
+    public GameObject toShowInTruePlace;
+    public GameObject buttonToPlace;
+    
     public GameObject objectToPlace;
     public GameObject placementIndicator;
 
@@ -25,13 +28,36 @@ public class ARTapToPlaceObject : MonoBehaviour
         UpdatePlacementPose();
         UpdatePlacementIndicator();
 
-        if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        //
+        if (_haveAGameObject && !toShowInTruePlace.activeSelf)
+        {
+            toShowInTruePlace.SetActive(true);
+        }
+        else if (!_haveAGameObject && toShowInTruePlace.activeSelf)
+        {
+            toShowInTruePlace.SetActive(false);
+        }
+        
+        //
+        if (_haveAGameObject && buttonToPlace.activeSelf)
+        {
+            buttonToPlace.SetActive(false);
+        }
+        else if (!_haveAGameObject && !buttonToPlace.activeSelf)
+        {
+            buttonToPlace.SetActive(true);
+        }
+    }
+
+    public void ActionToPlace()
+    {
+        if (placementPoseIsValid)
         {
             PlaceObject();
         }
     }
 
-    private void PlaceObject()
+    public void PlaceObject()
     {
         if (_haveAGameObject)
         {
