@@ -53,8 +53,10 @@ public class ARTapToPlaceObject : MonoBehaviour
     {
         if (placementPoseIsValid)
         {
-            PlaceObject();
+            //PlaceObject();
         }
+
+        PlaceObject();
     }
 
     public void PlaceObject()
@@ -85,7 +87,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         
         else
         {
-            if (placementPoseIsValid)
+            /*if (placementPoseIsValid)
             {
                 placementIndicator.SetActive(true);
                 placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
@@ -93,7 +95,11 @@ public class ARTapToPlaceObject : MonoBehaviour
             else
             {
                 placementIndicator.SetActive(false);
-            }
+            }*/
+            
+            //Alternative:
+            placementIndicator.SetActive(true);
+            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
     }
 
